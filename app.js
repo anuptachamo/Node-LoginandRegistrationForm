@@ -1,8 +1,8 @@
-const express = require('express');  //put value
+const express = require('express');  //express laii require gareko
 const { users } = require('./model/index');
 const bcrypt = require("bcryptjs");
 
-const app =express()      //calling
+const app =express()      // require laii call gareko
 
 
 //require database
