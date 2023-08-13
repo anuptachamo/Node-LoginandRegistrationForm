@@ -1,6 +1,6 @@
 
-# Simple CRUD Node js Project
-This project show how to create, read,update delete the blogs by using node js.
+# Simple Login and registration Node js Project
+This project show how to login and register by using node js.
 
 
 ## Package installation
