@@ -36,9 +36,87 @@ app.post('/createUser', async(req, res ) =>{
         password : bcrypt.hashSync(req.body.password,10),
     })
 
-    res.send("Successful")
-    // res.redirect('/about')
+    // res.send("Successful")
+    res.redirect('/login')
 })
+
+
+//Login
+app.get('/login',(req, res) =>{
+    res.render('login');
+});
+
+// app.post('/createLogin', async(req, res ) =>{
+//     console.log(req.body);
+
+//         const email =  req.body.email
+//         const password = req.body.password
+
+//          const userFound = await users.findAll({
+//             where:{
+//                 email: email,
+//                 // password:password,
+//             },   
+//         });
+        
+//         // console.log(userFound);
+
+//         if(userFound.length == 0){
+//             res.send('Invaild Username or Password')
+//         }else{
+//             const databasePassword = userFound[0].password;
+//             console.log(databasePassword)
+//             console.log(password)
+
+
+
+//             const isPasswordCorrect = bcrypt.compareSync(password,databasePassword);
+//             console.log(isPasswordCorrect);
+
+
+//             if (isPasswordCorrect){
+//                 res.send("Login Successfully")
+//             }else{
+//                 res.send("Invaild password");
+//             }
+//         }
+// });
+
+
+// LOGIN user post API
+app.post("/createLogin", async (req, res) => {
+    // email , password
+    const email = req.body.email;
+    const password = req.body.password;
+  
+    //aako email registered xa ki xainw check garnu paryo
+    const userFound = await users.findAll({
+      where: {
+        email: email,
+      },
+    });
+  
+    // if registered xainw vaney(no)
+    if (userFound.length == 0) {
+      // error faldinu paryo invalid email or email not registered error
+      res.send("Invalid email or password");
+    } else {
+      const databasePassword = userFound[0].password; // database pahila register garda ko password
+      //if registered xa vaney (yes)
+  
+      // if yes(xa) vaney ,password check garnu paryo
+      const isPasswordCorrect = bcrypt.compareSync(password, databasePassword);
+  
+      if (isPasswordCorrect) {
+        // match vayo(yes),login sucessfully
+        res.send("Login Sucessfull");
+      } else {
+        // match vayena (no) , error->invalid password
+        res.send("Invalid email or password");
+      }
+    }
+  });
+
 
 
 //port no : 1300-65000, 1300 vanda tala chai internet system le use garirahunchha
