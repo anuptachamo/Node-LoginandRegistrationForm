@@ -14,9 +14,9 @@ app.set('view engine', 'ejs')
 app.use(express.static("./public"));  
 
 // Request(req)/Response(res) cycle
-app.get('/',(req, res) =>{
-    res.send('You are in home page');
-});
+// app.get('/',(req, res) =>{
+//     res.send('You are in home page');
+// });
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -57,7 +57,7 @@ app.get('/addblog',(req, res) =>{
   });
 
 //register
-app.get('/register',(req, res) =>{
+app.get('/',(req, res) =>{
     res.render('register');
 });
 
