@@ -1,15 +1,17 @@
 const express = require('express');  //express laii require gareko
 const { users } = require('./model/index');
 const bcrypt = require("bcryptjs");
-
 const app =express()      // require laii call gareko
-
 
 //require database
 require("./model/index")
 
 //setting up ejs, telling nodejs to use ejs
 app.set('view engine', 'ejs')
+
+// folder access garna deko ejs file haru lai
+//public vitra ko folder access garna payo aba 
+app.use(express.static("./public"));  
 
 // Request(req)/Response(res) cycle
 app.get('/',(req, res) =>{
@@ -19,6 +21,40 @@ app.get('/',(req, res) =>{
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+//MAin page
+app.get('/dashboard',(req, res) =>{
+  res.render('dashboard');
+});
+
+  //MAin page
+  app.get('/aboutUs',(req, res) =>{
+    res.render('aboutUs');
+  });
+
+    //MAin page
+app.get('/addblog',(req, res) =>{
+  res.render('addblog');
+});
+
+  //MAin page
+  app.get('/contactus',(req, res) =>{
+    res.render('contactus');
+  });
+
+  app.get('/logout', (req, res) => {
+    // Perform any logout actions, such as clearing session data or tokens
+  
+    // Redirect the user to the login page after logging out
+    res.redirect('/login');
+  });
+  
+  
+  
+
+  //MAin page
+  app.get('/home',(req, res) =>{
+    res.render('home');
+  });
 
 //register
 app.get('/register',(req, res) =>{
@@ -41,47 +77,11 @@ app.post('/createUser', async(req, res ) =>{
 })
 
 
+
 //Login
 app.get('/login',(req, res) =>{
     res.render('login');
 });
-
-// app.post('/createLogin', async(req, res ) =>{
-//     console.log(req.body);
-
-//         const email =  req.body.email
-//         const password = req.body.password
-
-//          const userFound = await users.findAll({
-//             where:{
-//                 email: email,
-//                 // password:password,
-//             },   
-//         });
-        
-//         // console.log(userFound);
-
-//         if(userFound.length == 0){
-//             res.send('Invaild Username or Password')
-//         }else{
-//             const databasePassword = userFound[0].password;
-//             console.log(databasePassword)
-//             console.log(password)
-
-
-
-//             const isPasswordCorrect = bcrypt.compareSync(password,databasePassword);
-//             console.log(isPasswordCorrect);
-
-
-//             if (isPasswordCorrect){
-//                 res.send("Login Successfully")
-//             }else{
-//                 res.send("Invaild password");
-//             }
-//         }
-// });
-
 
 // LOGIN user post API
 app.post("/createLogin", async (req, res) => {
@@ -94,6 +94,8 @@ app.post("/createLogin", async (req, res) => {
       where: {
         email: email,
       },
+
+      // res.redirect('/dashboard')
     });
   
     // if registered xainw vaney(no)
@@ -109,7 +111,7 @@ app.post("/createLogin", async (req, res) => {
   
       if (isPasswordCorrect) {
         // match vayo(yes),login sucessfully
-        res.send("Login Sucessfull");
+        res.render("dashboard");
       } else {
         // match vayena (no) , error->invalid password
         res.send("Invalid email or password");
@@ -117,6 +119,9 @@ app.post("/createLogin", async (req, res) => {
     }
   });
 
+
+
+  
 
 
 //port no : 1300-65000, 1300 vanda tala chai internet system le use garirahunchha

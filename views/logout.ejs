@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logout page</title>
+</head>
+<body>
+    <div class="modal" id="logout-modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+                <a href="/logout" class="modal-button">Yes</a>
+                <button class="modal-button" id="cancel-button">Cancel</button>
+            </div>
+        </div>
+      </div>
+      
+      
+      <script>
+        const logoutLink = document.getElementById("logout-link");
+        const modal = document.getElementById("logout-modal");
+        const cancelButton = document.getElementById("cancel-button");
+      
+        logoutLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            modal.style.display = "flex";
+        });
+      
+        cancelButton.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+      </script>
+</body>
+</html>
