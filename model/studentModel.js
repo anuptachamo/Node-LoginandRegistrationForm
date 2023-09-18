@@ -9,15 +9,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       grade: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       rollno: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       age: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       contactno: {
