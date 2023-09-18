@@ -9,21 +9,37 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       grade: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER, // Define the field as an INTEGER type
         allowNull: false,
+        validate: {
+          isInt: true, // Add a validation rule to check if the value is an integer
+        },
       },
       rollno: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          isInt: true, // Add a validation rule to check if the value is an integer
+        },
       },
       age: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+          isInt: true, // Add a validation rule to check if the value is an integer
+        },
       },
       contactno: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+        validate: {
+          isPhoneNumber: function (value) {
+            if (!/^[0-9+]+$/.test(value)) {
+              throw new Error('Contact number must contain only numeric digits and the "+" symbol.');
+            }
+          },
+        },
+      },
     
     });
     return Student;
