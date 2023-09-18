@@ -16,7 +16,7 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;
-    z-index: 2;
+    z-index: 1;
     position: sticky;
     top: 0px;
   }
@@ -36,7 +36,8 @@ body {
 
   .navbar-logo:hover{
     color: rgb(22, 103, 214);/* Change the color on hover */
-  transform: scale(1.05); /* Slightly scale the logo on hover */
+    transform: scale(1.05); /* Slightly scale the logo on hover */
+    
   }
 
   .navbar-logo img {
@@ -60,7 +61,8 @@ body {
     display: none;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 8px 12px;
+    margin: 15px;
+    padding: 5px;
     border-radius: 5px;
     font-size: 14px;
     white-space: nowrap;
