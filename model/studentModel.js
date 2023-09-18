@@ -30,16 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       contactno: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          isPhoneNumber: function (value) {
-            if (!/^[0-9+]+$/.test(value)) {
-              throw new Error('Contact number must contain only numeric digits and the "+" symbol.');
-            }
-          },
+          isInt: true, // Add a validation rule to check if the value is an integer
         },
-      },
+      }
     
     });
     return Student;
